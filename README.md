@@ -10,10 +10,17 @@ To run files in this repository, you need a Rust compiler. You can install Rust 
 - [Install and setup miniforge](https://kirenz.github.io/codelabs/codelabs/miniforge-setup/#0) (make sure to remove Anaconda otherwise things get squirrely)
 - [Setup a virtual environment and install Rust with it](https://www.howtoforge.com/how-to-create-rust-virtual-environment-using-conda-on-linux/) 
 
-Once you have the environment setup, you can clone this repository and compile source codes. For example:
+Once you have the environment setup, you can clone this repository and compile source codes. The project structure is designed to be built with [Cargo](https://doc.rust-lang.org/cargo/). Thus to build the project, you can type
+
 
 ```
-rustc create_ppm_images.rs 
+Cargo build 
 ```
 
-Then run the executable ```./create_ppm_images```
+This will compile the contents of ```main.rs''' into ```./target/debug/this_string``` where the binary will be named according to:
+
+```
+[[bin]]
+name = "this_string"
+```
+
