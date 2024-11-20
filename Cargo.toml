@@ -1,0 +1,11 @@
+[package]
+name = "raytracing"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[[bin]]
+name = "create_ppm_image"
+path = "src/main.rs"
+
