@@ -4,6 +4,8 @@
 // Section 2. Output an Image
 // The PPM Image Format
 //
+use std::fs::File;
+use std::io::Write;
 
 fn main() {
     // Image 
@@ -13,7 +15,13 @@ fn main() {
 
     // Render
 
-    println!("P3\n{0} {1}\n255\n", image_width, image_height);
+    // Create a new file
+    let mut data_file = File::create("image.ppm").expect("creation failed");
+
+    // write the first line to indicate the type of file/image format:
+    data_file.write((format!("P3\n{0} {1}\n255\n", image_width, image_height)).as_bytes()).expect("write failed.");
+
+    // println!("P3\n{0} {1}\n255\n", image_width, image_height);
     
     // I am going to predefine the variables so they don't get created in the for loop
     // not sure why the original blog post did the variable creation in the for loop
@@ -37,7 +45,8 @@ fn main() {
             ig = (255.999 * g) as u32;
             ib = (255.999 * b) as u32;
 
-            println!("{0} {1} {2}", ir, ig, ib);
+            // println!("{0} {1} {2}", ir, ig, ib);
+            data_file.write((format!("{0} {1} {2}\n", ir, ig, ib)).as_bytes()).expect("write failed.");
         }
     }
 }
