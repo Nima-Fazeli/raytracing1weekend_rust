@@ -7,6 +7,8 @@
 use std::fs::File;
 use std::io::Write;
 
+use indicatif::{ProgressBar, ProgressState, ProgressStyle};
+
 fn main() {
     // Image 
 
@@ -34,8 +36,16 @@ fn main() {
     let mut ib: u32;
 
     // For loop to generate pixel colors, row by row, left to right, top to bottom:
+    // first we're going to make a progress bar
+    let pb = ProgressBar::new(256);
+   
+    let spinner_style = ProgressStyle::with_template("{prefix:.bold.dim} {spinner} {wide_msg}")
+        .unwrap()
+        .tick_chars("⠁⠂⠄⡀⢀⠠⠐⠈ ");
 
     for i in 0..256 {
+        // increment progress bar
+        pb.inc(1);
         for j in 0..256 {
             r = (i as f32) / ((image_width as f32) - 1.0);
             g = (j as f32) / ((image_height as f32) - 1.0);
@@ -49,5 +59,7 @@ fn main() {
             data_file.write((format!("{0} {1} {2}\n", ir, ig, ib)).as_bytes()).expect("write failed.");
         }
     }
+    
+    pb.finish_with_message("image written.");
 }
 
