@@ -24,3 +24,8 @@ This will compile the contents of ```main.rs''' into ```./target/debug/this_stri
 name = "this_string"
 ```
 
+### Coding Liberties
+
+In re-implementing the blog post, I've decided to take some liberties:
+
+- I am using ```indicatif``` for progress bars. Here is the [repo](https://github.com/console-rs/indicatif/tree/632989d04e63a6bbdac8d89702c51009999dc81c)
