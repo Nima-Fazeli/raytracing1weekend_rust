@@ -7,7 +7,7 @@
 use std::fs::File;
 use std::io::Write;
 
-use indicatif::{ProgressBar, ProgressState, ProgressStyle};
+use indicatif::{ProgressBar};
 
 fn main() {
     // Image 
@@ -36,12 +36,8 @@ fn main() {
     let mut ib: u32;
 
     // For loop to generate pixel colors, row by row, left to right, top to bottom:
-    // first we're going to make a progress bar
+    // first we're going to make a progress bar   
     let pb = ProgressBar::new(256);
-   
-    let spinner_style = ProgressStyle::with_template("{prefix:.bold.dim} {spinner} {wide_msg}")
-        .unwrap()
-        .tick_chars("⠁⠂⠄⡀⢀⠠⠐⠈ ");
 
     for i in 0..256 {
         // increment progress bar
