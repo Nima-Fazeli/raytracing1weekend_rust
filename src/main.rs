@@ -11,8 +11,6 @@ use indicatif::{ProgressBar};
 
 pub mod vec3;
 
-// struct Colorf(f32, f32, f32);
-
 
 fn main() {
     // Image 
