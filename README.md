@@ -29,3 +29,15 @@ name = "this_string"
 In re-implementing the blog post, I've decided to take some liberties:
 
 - I am using ```indicatif``` for progress bars. Here is the [repo](https://github.com/console-rs/indicatif/tree/632989d04e63a6bbdac8d89702c51009999dc81c)
+
+
+### A few cool resource:
+
+- Since we're making heavy use of [modules](https://doc.rust-lang.org/rust-by-example/mod.html)
+- Since we're overloading [standard operators](https://doc.rust-lang.org/std/ops/index.html)
+- An here are two cool implemenations of vec modules [first](https://github.com/PistonDevelopers/vecmath/blob/master/src/lib.rs) and [second](https://github.com/ryankaplan/vec3/blob/master/src/lib.rs)
+
+### TODOs:
+
+- Break up the vec3 into a separate one for Color and Point with their own traits (not the most efficient but easier to work with)
+- Consider refactoring Point into something that looks like a very basic linear algebra library with vector-matrix operations
