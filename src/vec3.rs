@@ -1,14 +1,20 @@
 // create a vector class with some printing capabilities
 
 pub mod vec3 {
-    use std::ops::{Add, Sub};
-    
-    pub struct Color(pub u32, pub u32, pub u32);
+    use std::ops::{Add, Sub, Mul, Neg, Div};
+
+    #[derive(Debug, Copy, Clone, PartialEq)]
+    pub struct Color {
+        pub r: u32,
+        pub g: u32,
+        pub b: u32,
+    }
 
     impl Color {
         // function to write ppm
         pub fn write_ppm(&self) -> String {
-            let hello = String::from(format!("{0} {1} {2}\n", self.0, self.1, self.2));
+            let hello = String::from(
+                format!("{0} {1} {2}\n", self.r, self.g, self.b));
             return hello;
         }
     }
@@ -17,24 +23,44 @@ pub mod vec3 {
         type Output = Self;
 
         fn add(self, other: Self) -> Self {
-            Self {0: self.0 + other.0, 1: self.1 + other.1, 2: self.2 + other.2}
+            Self {r: self.r + other.r, g: self.g + other.g, b: self.b + other.b}
         }
     }
-    
+
 
     impl Sub<Color> for Color {
         type Output = Self;
 
         fn sub(self, other: Self) -> Self {
-            Self {0: self.0 - other.0, 1: self.1 - other.1, 2: self.2 - other.2}
+            Self {r: self.r - other.r, g: self.g - other.g, b: self.b - other.b}
         }
     }
 
-    impl Copy for Color {}
+    // change this implementation to multiply scalar with vector
+    impl Mul<Color> for Color{
+        type Output = Self;
 
-    impl Clone for Color {
-        fn clone(&self) -> Self {
-            *self 
+        fn mul(self, other: Self) -> Self {
+            Self {r: self.r * other.r, g: self.g * other.g, b: self.b - other.b}
         }
     }
+
+    impl Neg<Color> for Color {
+        type Output = Self;
+
+        fn neg(self) -> Self {
+            Self {r: -self.r, g: -self.g, b: -self.b}
+        }
+    }
+
+    impl Div<Color> for Color {
+        type Output = Self;
+
+        fn div(self, other: u32) -> Self {
+            if other == 0 {
+                panic!("Cannot divide by zero");
+            }
+            Self {r: self.r / other, g: self.g / other, b: self.b / other}
+        }
+    }{}
 }
