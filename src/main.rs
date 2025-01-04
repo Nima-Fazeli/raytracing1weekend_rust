@@ -7,7 +7,7 @@
 use std::fs::File;
 use std::io::Write;
 
-use indicatif::{ProgressBar};
+use indicatif::ProgressBar;
 
 pub mod vec3;
 
@@ -16,7 +16,6 @@ fn main() {
     let image_height: u32 = 256;
 
     // Render
-
     // Create a new file
     let mut data_file = File::create("image.ppm").expect("creation failed");
 
